@@ -1,4 +1,4 @@
-package com.company.nhnpretest1;
+package com.company.xhxpretest1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * 2) compare with current value of minimum difference. If this difference is smaller than the min value, update it.
  * 3) Store a pair of values in the array to record what are closest pairs and what has smallest sum of values.
  */
-public class NhnTest_1_ClosestCoordinates_ {
+public class XhxTest_1_ClosestCoordinates_ {
 
     public static void main(String[] args) {
         ArrayList<Integer> numberList = new ArrayList<Integer>();
@@ -50,13 +50,5 @@ public class NhnTest_1_ClosestCoordinates_ {
             }
         }
         System.out.println(pair[0]+" "+pair[1]);
-
-        // 다음과 같은 방식으로 numberList와 number 변수를 사용할 수 있음
-        /*
-        for (Integer number : numberList) {
-            System.out.println("number=" + number);
-        }
-        */
-
     }
 }

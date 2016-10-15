@@ -1,4 +1,4 @@
-package com.company.nhnpretest1;
+package com.company.xhxpretest1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
  *
  * NOTE: Get an appropriate way of using 'OR' and 'NOT' operation.( e.g) ~~을 제외하는 모든것)
  */
-public class NhnTest_2_StringPattern {
+public class XhxTest_2_StringPattern {
 
 
     public static void main(String[] args){

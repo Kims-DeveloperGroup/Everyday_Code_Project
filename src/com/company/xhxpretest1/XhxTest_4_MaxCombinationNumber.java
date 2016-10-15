@@ -1,11 +1,10 @@
-package com.company.nhnpretest1;
+package com.company.xhxpretest1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @Level of Difficulty: Low-intermediate
@@ -20,7 +19,7 @@ import java.util.List;
  * 3) And return maximum combination of value to caller.
  *
  */
-public class NhnTest_4_MaxCombinationNumber {
+public class XhxTest_4_MaxCombinationNumber {
 
     public static void main(String[] args) {
         ArrayList<Integer> numberList = new ArrayList<Integer>();

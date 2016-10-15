@@ -1,4 +1,4 @@
-package com.company.nhnpretest1;
+package com.company.xhxpretest1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
  * 2) If the number is not same as its reverse number, add reverse number to it. e.g) 145+ 541 =686, number becomse 686
  * 3) Repeating step 2 till find the answer. But the number should be less than 1000.
  */
-public class NhnTest_3_ReverseNumber {
+public class XhxTest_3_ReverseNumber {
     public static void main(String[] args) {
         int number = 0;
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
