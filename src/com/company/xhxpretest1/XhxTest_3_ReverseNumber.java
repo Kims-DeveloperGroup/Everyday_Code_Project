@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
  * @Problem : 1) Make a number which is same as reverse number.
  * 2) If the number is not same as its reverse number, add reverse number to it. e.g) 145+ 541 =686, number becomse 686
  * 3) Repeating step 2 till find the answer. But the number should be less than 1000.
+ *
+ * @Condition: A given number is smaller than 1000.
+ *
+ * @Solution: A reverse number is computed in two cases, 2-digit or 3-digit number.
  */
 public class XhxTest_3_ReverseNumber {
     public static void main(String[] args) {
@@ -20,10 +24,15 @@ public class XhxTest_3_ReverseNumber {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        findSameReverse1(number);
+        System.out.println("===================================");
+        findSameReverse2(number);
 
+    }
+
+    public static void findSameReverse1(int number){
         int rev_num;
         int first, second, third;
-
 
         while (number<1000){
             first = number%10;
@@ -40,6 +49,28 @@ public class XhxTest_3_ReverseNumber {
             }else
                 number = number+rev_num;
         }
-        System.out.println("-1");
+        System.out.println("No answer.");
+    }
+
+    public static void findSameReverse2(int init){
+        if (init<10) System.out.println(init+ " should be bigger than 9.");
+        int number =init;
+        int reverse;
+
+        while (number<1000){
+
+            if (number <100){
+                reverse = (number%10*10) + (number/10);
+            }else{
+                reverse= (number%10*100)+ (number%100 - number%10) + (number/100);
+            }
+
+            if (reverse==number){
+                System.out.println(number);
+                return;
+            }
+            number +=reverse;
+        }
+        System.out.println(init +" has no answer.");
     }
 }
