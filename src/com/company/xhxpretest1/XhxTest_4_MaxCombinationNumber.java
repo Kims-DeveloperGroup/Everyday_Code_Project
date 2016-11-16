@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @Condition: each number is smaller than 100
  *
  * @Solution by Full Search:
- * 1) Search and count every possible case recursively.
+ * 1) Search and countStroke every possible case recursively.
  * 2) add a value to tale of built value, which is returned as a maximum value from a callee.
  * 3) And return maximum combination of value to caller.
  *

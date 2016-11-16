@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * But if more than two pairs exist, choose smaller sum of two coordinate. e.g) (6,8) or (38,40)  but choose (6,8)
  *
  * @Solution by Full Search:
- * 1) set a compare value and fully count difference with others.
+ * 1) set a compare value and fully countStroke difference with others.
  * 2) compare with current value of minimum difference. If this difference is smaller than the min value, update it.
  * 3) Store a pair of values in the array to record what are closest pairs and what has smallest sum of values.
  */

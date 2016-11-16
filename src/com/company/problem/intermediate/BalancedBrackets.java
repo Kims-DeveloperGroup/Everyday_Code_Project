@@ -36,8 +36,7 @@ public class BalancedBrackets {
                 top =stack.pop();
                 if ( (top =='(' && bracket != ')') ||
                         (top =='{' && bracket != '}') ||
-                        (top == '[' && bracket != ']')
-                        ) return false;
+                        (top == '[' && bracket != ']')) return false;
             }
         }
         return (stack.isEmpty());

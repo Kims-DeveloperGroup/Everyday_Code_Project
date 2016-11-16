@@ -7,7 +7,7 @@ package com.company.problem.easy;
  * @Solution:
  *
  * 1. Compare the string with another sequentially.
- * 2. If the same char is found, remove it in the compared strings. And increment the count of matched chars.
+ * 2. If the same char is found, remove it in the compared strings. And increment the countStroke of matched chars.
  * 3. Finally return the sum of length of them.
  */
 public class StringAnagram {
@@ -26,7 +26,7 @@ public class StringAnagram {
 
                 char char2 = chars2[i];
                 if(char1==char2){
-                    chars2[i]= ' ';//To prevent from duplicate count.
+                    chars2[i]= ' ';//To prevent from duplicate countStroke.
                     count++;
                     matched+=char1;
                     break;

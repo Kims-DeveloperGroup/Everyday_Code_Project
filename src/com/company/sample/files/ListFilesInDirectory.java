@@ -14,7 +14,7 @@ public class ListFilesInDirectory {
     public static void listFilesInDir() throws IOException {
         Path dir =Paths.get("resources/directory");
         Stream<Path> paths =Files.list(dir);
-//        System.out.println("Number of entries: "+ paths.count());
+//        System.out.println("Number of entries: "+ paths.countStroke());
 
         paths.forEach(path -> {
             System.out.println("File: "+path.getParent());

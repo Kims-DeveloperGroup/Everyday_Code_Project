@@ -5,10 +5,10 @@ import java.util.Stack;
 
 /**
  * @Level : Low-easy
- *@Problem: Implement the three operations of Queue by using Two of Stack. op1: enqueue, op2: dequeue, op3: peek
+ *@Problem: Implement the three operations of Queue by using Two of Stack. op1: enqueueToMinQueue, op2: dequeueFromMinQueue, op3: peek
  * @Solution:
  * 1. Make two stacks named by left and right. the left is LIFO and right is FIFO.
- * 2. In case of enqueue, the left stack is used. But in case of dequeue/peek, the right is used.
+ * 2. In case of enqueueToMinQueue, the left stack is used. But in case of dequeueFromMinQueue/peek, the right is used.
  */
 
 class MyQueue<T1>{
@@ -74,9 +74,9 @@ public class QueueOperation {
 
         for (int i = 0; i < n; i++) {
             int operation = scan.nextInt();
-            if (operation == 1) { /** enqueue**/
+            if (operation == 1) { /** enqueueToMinQueue**/
                 queue.enqueue(scan.nextInt());
-            } else if (operation == 2) { /** dequeue**/
+            } else if (operation == 2) { /** dequeueFromMinQueue**/
                 queue.dequeue();
             } else if (operation == 3) { /** peek **/
                 System.out.println(queue.peek());

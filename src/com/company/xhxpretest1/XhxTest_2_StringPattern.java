@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 /**
  * @Level of Difficulty: Medium-intermediate
  *
- * Problem : Given set of words. and count the number of words that contain two of patters. e.g)  vowels >=2 in a row or consonant >=3 in a row.
+ * Problem : Given set of words. and countStroke the number of words that contain two of patters. e.g)  vowels >=2 in a row or consonant >=3 in a row.
  *
  * Solution :
  * 1) Inspect each word by traversing char by char to find the pattern.
@@ -37,7 +37,7 @@ public class XhxTest_2_StringPattern {
         boolean find_J;
 
         for (String word : words){
-            find_J =false; //Don't count if a pattern is counted already in the same word.
+            find_J =false; //Don't countStroke if a pattern is counted already in the same word.
             find_M = false;
 
             for (int i=0 ; i<word.length()-1; i++){    //Traverse only one word
