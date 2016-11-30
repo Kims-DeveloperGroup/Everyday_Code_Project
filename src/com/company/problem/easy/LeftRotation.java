@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * @Level Of Difficulty : Low Level
  *
- * @Problem: Rotate elements of array. e.g)  {1,2,3,4,5} -(2 rotation)=> {3,4,5,1,2}
+ * @Problem: Rotate elements of array. e.g)  {1,2,3,4,5} =(2 rotation)=> {3,4,5,1,2}
  *
  * @Solution:
  * 1. move elements as the num of rotation from index 0 to tail of array.

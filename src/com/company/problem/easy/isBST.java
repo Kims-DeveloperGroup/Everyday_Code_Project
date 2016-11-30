@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @Condition:  0<=value <= 10^4
  *
- * @Solution:
+ * @Solution: In BST, a Node should be larger or smaller than a parent and grandparent(This is why to set min and max values.
  * 1. Traverse nodes in a recursive way.
  * 2. Setting a Max value and a Min value to prevent duplicate nodes.
 *
