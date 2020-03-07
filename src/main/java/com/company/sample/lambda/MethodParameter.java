@@ -1,7 +1,5 @@
 package com.company.sample.lambda;
 
-import com.sun.tools.javac.util.StringUtils;
-
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
@@ -32,17 +30,14 @@ public class MethodParameter {
 
     public static void main(String[] args) {
         String tigerStr = "TIGER";
-        MethodParameter.methodUsingUnaryOperator(tigerStr, input -> {
-            String output = StringUtils.toLowerCase(input);
-            return output;
-        });
-        MethodParameter.methodUsingUnaryOperator(tigerStr, input -> StringUtils.toLowerCase(input));
-        MethodParameter.methodUsingUnaryOperator(tigerStr, StringUtils::toLowerCase);
+        MethodParameter.methodUsingUnaryOperator(tigerStr, String::toLowerCase);
+        MethodParameter.methodUsingUnaryOperator(tigerStr, String::toLowerCase);
+        MethodParameter.methodUsingUnaryOperator(tigerStr, String::toLowerCase);
 
-        MethodParameter.methodUsingFunctionInterface(tigerStr, input -> input.length());
+        MethodParameter.methodUsingFunctionInterface(tigerStr, String::length);
         MethodParameter.methodUsingFunctionInterface(tigerStr, String::length);
 
-        MethodParameter.methodUsingCustomMethod(tigerStr, input -> new StringBuilder(input).append("JK").toString());
-        MethodParameter.methodUsingCustomMethodDoingMore(tigerStr, input -> new StringBuilder(input).append("JK").toString());
+        MethodParameter.methodUsingCustomMethod(tigerStr, input -> input + "JK");
+        MethodParameter.methodUsingCustomMethodDoingMore(tigerStr, input -> input + "JK");
     }
 }
