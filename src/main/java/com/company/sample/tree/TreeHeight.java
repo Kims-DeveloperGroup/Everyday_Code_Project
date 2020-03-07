@@ -11,10 +11,9 @@ public class TreeHeight {
         return  height;
     }
 
-    public int getHeightFromChild(Node node, String childToFind) {
-        System.out.println(node.value);
-        System.out.println(node.children.toString());
-        if (node.value.equals(childToFind)) {
+    private int getHeightFromChildContainingValues(Node node, String pointA, String pointB) {
+
+        if (node.value.equals(pointA) || node.value.equals(pointB)) {
             return 1;
         }
 
