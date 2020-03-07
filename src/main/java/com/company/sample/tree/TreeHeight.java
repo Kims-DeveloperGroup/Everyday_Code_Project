@@ -1,6 +1,15 @@
 package com.company.sample.tree;
 
-public class GetTreeHeight {
+public class TreeHeight {
+
+    public int getDistanceBetween(Node treeRoot, String pointA, String pointB) {
+        int height = 0;
+        for (Node child : treeRoot.children) {
+            height += getHeightFromChildContainingValues(child, pointA, pointB);
+        }
+        System.out.println("Distance: " + height);
+        return  height;
+    }
 
     public int getHeightFromChild(Node node, String childToFind) {
         System.out.println(node.value);
@@ -15,7 +24,7 @@ public class GetTreeHeight {
 
         int height = 0;
         for (Node child : node.children) {
-            height += getHeightFromChild(child, childToFind);
+            height += getHeightFromChildContainingValues(child, pointA, pointB);
         }
         return height > 0 ? height + 1 : 0;
     }
