@@ -23,7 +23,7 @@ class TreeHeightTest {
     }
 
     @Test
-    public void getDistanceBetween_whenOneIsRootAndAnotherIsItsGrandChild_thenDistanceShouldBe2() {
+    public void getDistanceBetween_whenOneIsGrandChildOfRootAndAnotherIsItsChild_thenDistanceShouldBe1() {
         // Given
         Node root = new Node("A");
         String pointF = "A";
