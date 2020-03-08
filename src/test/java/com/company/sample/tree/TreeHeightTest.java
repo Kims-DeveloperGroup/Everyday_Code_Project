@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 class TreeHeightTest {
     private static TreeHeight treeHeight = new TreeHeight();
     public static Node testTree;
+
     @BeforeAll
     public static void buildTestTree() {
         Node root = new Node("A");
