@@ -18,14 +18,15 @@ public class TreeHeight {
             height += getDistanceBetween(subTree, pointA, pointB);
         }
         if (tree.isRoot) {
-            return height;
+            return Math.abs(height);
         } else if (tree.value.equals(pointA) || tree.value.equals(pointB)) {
             if (height == 0) {
                 return 1;
             } else {
-                return height;
+                return - height;
             }
         }
-        return height > 0 ? height + 1 : 0;
+
+        return height > 0 ? height + 1 : height;
     }
 }
