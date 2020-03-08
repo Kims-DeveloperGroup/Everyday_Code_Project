@@ -10,30 +10,37 @@ public class TreeHeight {
      * @return the distance between pointA node and pointB node in tree
      */
     public int getDistanceBetween(Node tree, String pointA, String pointB) {
-
+        //Base case 1: The current node is pointA or pointB, and no more children(subtree) exists to traverse.
         if ((tree.value.equals(pointA) || tree.value.equals(pointB)) && tree.children.size() == 0) {
             return 1;
         }
-
+        //Base case 2: No more subtree(children) to traverse exists, and the current node is not pointA or pointB
         if (tree.children.size() == 0) {
             return 0;
         }
 
+        //Sub-problem: get the height from the nodes(pointA or pointB) in the subtree.
         int height = 0;
-
         for (Node subTree : tree.children) {
             height += getDistanceBetween(subTree, pointA, pointB);
         }
+
+        //Exceptional case handling
         if (tree.isRoot) {
+            //When current node is root, height does not increment height, and the current height is returned.
             return Math.abs(height);
-        } else if (tree.value.equals(pointA) || tree.value.equals(pointB)) {
-            if (height == 0) {
-                return 1;
-            } else {
-                return - height;
-            }
+        } else if ((tree.value.equals(pointA) || tree.value.equals(pointB)) && height == 0) {
+            //When pointA or pointB does not exist in the subtree(children) of the current node.
+            return 1;
+        } else if ((tree.value.equals(pointA) || tree.value.equals(pointB)) && height > 0) {
+            //When the current node is pointA or pointB and a child node is pointA or pointB, a minus value of height is returned. Minus value means the distance'been already found so that the height should be returned as it is.
+            //In the case, pointA and pointB are in the same subtree.
+            return - height;
         }
 
+        // When the current node is not pointA or pointB
+        // height = 0 pointA or pointB does not exists in the subtree so that no height is returned.
+        // height > 0 pointA or pointB exists in the subtree and the height should be incremented by 1 and returned.
         return height > 0 ? height + 1 : height;
     }
 }
