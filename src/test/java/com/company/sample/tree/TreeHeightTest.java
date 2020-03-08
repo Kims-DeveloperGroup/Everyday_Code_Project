@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Test;
 
 class TreeHeightTest {
     private static TreeHeight treeHeight = new TreeHeight();
-    public Node testTree;
+    public static Node testTree;
     @BeforeAll
     public static void buildTestTree() {
         Node root = new Node("A");
+        root.isRoot = true;
         Node rootChildA = new Node("A-A");
         Node rootChildB = new Node("A-B");
         Node rootChildC = new Node("A-C");
@@ -26,6 +27,8 @@ class TreeHeightTest {
 
         Node acaChildA = new Node("A-C-A-A");
         aca.addChild(acaChildA);
+
+        testTree = root;
     }
 
     @Test
@@ -55,13 +58,13 @@ class TreeHeightTest {
     }
 
     @Test
-    public void getDistanceBetween_whenOneIsChildOfRootAndAnotherIsGrandChild_thenDistanceShouldBe3() {
+    public void getDistanceBetween_whenOneIsRootChildAAndAnotherIsChildOfRootChildB_thenDistanceShouldBe3() {
         // Given
-        String root = "A";
-        String grandChildOfRoot = "A-A-A";
+        String rootChildA = "A-A";
+        String childAOfRootChildB = "A-B-A";
 
         // When
-        int height = treeHeight.getDistanceBetween(testTree, root, grandChildOfRoot);
+        int height = treeHeight.getDistanceBetween(testTree, rootChildA, childAOfRootChildB);
 
         // Then
         Assertions.assertThat(height).isEqualTo(3);
