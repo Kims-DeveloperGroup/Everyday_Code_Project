@@ -1,5 +1,6 @@
 package com.company.sample.tree;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,9 +16,7 @@ public class Node {
         children.add(child);
     }
 
-    public void addChildren(String ...values) {
-        for (String value : values) {
-            addChild(new Node(value));
-        }
+    public void addChildren(Node ...values) {
+        children.addAll(Arrays.asList(values));
     }
 }
