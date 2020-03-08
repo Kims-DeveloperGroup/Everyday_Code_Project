@@ -2,28 +2,29 @@ package com.company.sample.tree;
 
 public class TreeHeight {
 
-    public int getDistanceBetween(Node treeRoot, String pointA, String pointB) {
-        int height = 0;
-        for (Node child : treeRoot.children) {
-            height += getHeightFromChildContainingValues(child, pointA, pointB);
-        }
-        System.out.println("Distance: " + height);
-        return  height;
-    }
+    public int getDistanceBetween(Node tree, String pointA, String pointB) {
 
-    private int getHeightFromChildContainingValues(Node node, String pointA, String pointB) {
-
-        if (node.value.equals(pointA) || node.value.equals(pointB)) {
+        if ((tree.value.equals(pointA) || tree.value.equals(pointB)) && tree.children.size() == 0) {
             return 1;
         }
 
-        if (node.children.size() == 0) {
+        if (tree.children.size() == 0) {
             return 0;
         }
 
         int height = 0;
-        for (Node child : node.children) {
-            height += getHeightFromChildContainingValues(child, pointA, pointB);
+
+        for (Node subTree : tree.children) {
+            height += getDistanceBetween(subTree, pointA, pointB);
+        }
+        if (tree.isRoot) {
+            return height;
+        } else if (tree.value.equals(pointA) || tree.value.equals(pointB)) {
+            if (height == 0) {
+                return 1;
+            } else {
+                return height;
+            }
         }
         return height > 0 ? height + 1 : 0;
     }
