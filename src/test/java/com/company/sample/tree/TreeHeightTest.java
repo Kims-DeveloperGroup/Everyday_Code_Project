@@ -2,21 +2,40 @@ package com.company.sample.tree;
 
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class TreeHeightTest {
     private static TreeHeight treeHeight = new TreeHeight();
+    public Node testTree;
+    @BeforeAll
+    public static void buildTestTree() {
+        Node root = new Node("A");
+        Node rootChildA = new Node("A-A");
+        Node rootChildB = new Node("A-B");
+        Node rootChildC = new Node("A-C");
+        root.addChildren(rootChildA, rootChildB, rootChildC);
+
+        Node aaa = new Node("A-A-A");
+        rootChildA.addChild(aaa);
+        Node aba = new Node("A-B-A");
+        rootChildB.addChild(aba);
+        Node aca = new Node("A-C-A");
+        rootChildC.addChild(aca);
+
+
+        Node acaChildA = new Node("A-C-A-A");
+        aca.addChild(acaChildA);
+    }
 
     @Test
     public void getDistanceBetween_whenOneNodeIsRootAndAnotherNodeIsItsChild_thenDistanceShouldBe1() {
         // Given
-        Node root = new Node("A");
-        String pointA = "A";
-        String pointC = "C";
-        root.addChildren("B", pointC);
+        String root = "A";
+        String rootChildA = "A-A";
 
         // When
-        int height = treeHeight.getDistanceBetween(root, pointA, pointC);
+        int height = treeHeight.getDistanceBetween(testTree, root, rootChildA);
 
         // Then
         Assertions.assertThat(height).isEqualTo(1);
@@ -25,59 +44,24 @@ class TreeHeightTest {
     @Test
     public void getDistanceBetween_whenOneIsGrandChildOfRootAndAnotherIsItsChild_thenDistanceShouldBe1() {
         // Given
-        Node root = new Node("A");
-        String pointF = "A";
-        String pointE = "E";
-        root.addChildren("B", "C");
-        Node childOfRoot = new Node("D");
-        Node grandChildOfRoot = new Node(pointE);
-        childOfRoot.addChild(grandChildOfRoot);
-        root.addChild(childOfRoot);
-        Node childOfGrandChildOfRoot = new Node(pointF);
-        grandChildOfRoot.addChild(childOfGrandChildOfRoot);
-
+        String grandChildOfRoot = "A-C-A";
+        String itsChild = "A-C-A-A";
 
         // When
-        int height = treeHeight.getDistanceBetween(root, pointF, pointE);
+        int height = treeHeight.getDistanceBetween(testTree, grandChildOfRoot, itsChild);
 
         // Then
         Assertions.assertThat(height).isEqualTo(1);
     }
 
     @Test
-    public void getDistanceBetween_whenOneIsOneIsChildOfRootAndAnotherIsItsChild_thenDistanceShouldBe2() {
-        // Given
-        Node root = new Node("A");
-        String pointD = "D";
-        String pointE = "E";
-        root.addChildren("B", "C");
-        Node childOfRoot = new Node("D");
-        Node grandChildOfRoot = new Node(pointE);
-        childOfRoot.addChild(grandChildOfRoot);
-        root.addChild(childOfRoot);
-
-
-        // When
-        int height = treeHeight.getDistanceBetween(root, pointD, pointE);
-
-        // Then
-        Assertions.assertThat(height).isEqualTo(2);
-    }
-
-    @Test
     public void getDistanceBetween_whenOneIsChildOfRootAndAnotherIsGrandChild_thenDistanceShouldBe3() {
         // Given
-        Node root = new Node("A");
-        String pointB = "B";
-        String pointE = "E";
-        root.addChildren("B", "C");
-        Node rootChild = new Node("D");
-        rootChild.addChildren(pointB);
-        root.addChild(rootChild);
-
+        String root = "A";
+        String grandChildOfRoot = "A-A-A";
 
         // When
-        int height = treeHeight.getDistanceBetween(root, pointB, pointE);
+        int height = treeHeight.getDistanceBetween(testTree, root, grandChildOfRoot);
 
         // Then
         Assertions.assertThat(height).isEqualTo(3);
@@ -86,13 +70,11 @@ class TreeHeightTest {
     @Test
     public void testGetTreeHeight_whenNoChildToFindExists() {
         // Given
-        Node root = new Node("A");
-        String pointA = "A";
-        String notExistingPoint = "D";
-        root.addChildren("B", "C");
+        String root =  "A";
+        String nonExisting = "NO";
 
         // When
-        int distanceBetween = treeHeight.getDistanceBetween(root, pointA, notExistingPoint);
+        int distanceBetween = treeHeight.getDistanceBetween(testTree, root, nonExisting);
 
 
         // Then
