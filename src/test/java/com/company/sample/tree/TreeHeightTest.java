@@ -28,6 +28,9 @@ class TreeHeightTest {
         Node acaChildA = new Node("A-C-A-A");
         aca.addChild(acaChildA);
 
+        Node acaaChildA = new Node("A-C-A-A-A");
+        acaaChildA.addChild(acaaChildA);
+
         testTree = root;
     }
 
