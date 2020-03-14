@@ -35,12 +35,30 @@ public class TreeHeight {
         } else if ((tree.value.equals(pointA) || tree.value.equals(pointB)) && height > 0) {
             //When the current node is pointA or pointB and a child node is pointA or pointB, a minus value of height is returned. Minus value means the distance'been already found so that the height should be returned as it is.
             //In the case, pointA and pointB are in the same subtree.
-            return - height;
+            return -height;
         }
 
         // When the current node is not pointA or pointB
         // height = 0 pointA or pointB does not exists in the subtree so that no height is returned.
         // height > 0 pointA or pointB exists in the subtree and the height should be incremented by 1 and returned.
         return height > 0 ? height + 1 : height;
+    }
+
+    public Node findTheDeepestNode(Node tree) {
+        if (tree.children.size() == 0) {
+            tree.depth = 0;
+            return tree;
+        }
+        Node currentDeepestNode = null;
+        for (Node subTree : tree.children) {
+            Node deepestNode = findTheDeepestNode(subTree);
+            if (currentDeepestNode == null) {
+                currentDeepestNode = deepestNode;
+            } else {
+                currentDeepestNode = currentDeepestNode.depth >= deepestNode.depth ? currentDeepestNode : deepestNode;
+            }
+        }
+        currentDeepestNode.depth = currentDeepestNode.depth + 1;
+        return currentDeepestNode;
     }
 }
