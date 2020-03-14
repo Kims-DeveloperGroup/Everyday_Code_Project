@@ -51,9 +51,10 @@ class BinaryTreeNodeRemovalTest {
         // Given
 
         // When
-        Node after = binaryTreeNodeRemoval.removeRightChildNode(testTree);
+        testTree.rightChild = binaryTreeNodeRemoval.removeRootNodeOfBSearchTre(testTree.rightChild);
 
         // Then
+        assertThat(verifyBtree(testTree)).isTrue();
     }
 
     @Test
