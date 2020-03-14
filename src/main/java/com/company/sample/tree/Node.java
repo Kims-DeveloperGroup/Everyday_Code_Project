@@ -16,6 +16,8 @@ public class Node {
     public int depth = 0;
 
     public List<Node> children = new LinkedList<>();
+    public Node leftChild;
+    public Node rightChild;
     public String value;
 
     public Node(int numericValue) {
