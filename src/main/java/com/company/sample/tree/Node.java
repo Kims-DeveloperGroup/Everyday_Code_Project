@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Node {
-    boolean isRoot = false;
+    public boolean isRoot = false;
 
     public Node(String value) {
         this.value = value;
