@@ -1,9 +1,11 @@
 package com.company.sample.tree;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class TreeHeight {
 
     /**
-     *
      * @param tree
      * @param pointA a value of a node in a given tree
      * @param pointB a value of a node in a given tree
@@ -60,5 +62,34 @@ public class TreeHeight {
         }
         currentDeepestNode.depth = currentDeepestNode.depth + 1;
         return currentDeepestNode;
+    }
+
+    public List<Node> findTheLongestPathBeteewTwoNodes(Node tree) throws Exception {
+        if (tree.children.size() == 0) {
+            throw new Exception("The given tree has no child node");
+        }
+        LinkedList<Node> longestPath = new LinkedList<>();
+
+        for (Node sub : tree.children) {
+            Node deepest = findTheDeepestNode(sub);
+            if (longestPath.size() == 0) {
+                longestPath.push(deepest);
+            } else if (longestPath.size() == 1) {
+                if (longestPath.peekFirst().depth >= deepest.depth) {
+                    longestPath.addLast(deepest);
+                } else {
+                    longestPath.addFirst(deepest);
+                }
+            } else {
+                if (deepest.depth >= longestPath.peekFirst().depth) {
+                    longestPath.removeLast();
+                    longestPath.addFirst(deepest);
+                } else if (deepest.depth > longestPath.peekFirst().depth && deepest.depth < longestPath.peekFirst().depth) {
+                    longestPath.removeLast();
+                    longestPath.addLast(deepest);
+                }
+            }
+        }
+        return longestPath;
     }
 }

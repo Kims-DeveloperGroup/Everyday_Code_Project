@@ -4,6 +4,8 @@ package com.company.sample.tree;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TreeHeightTest {
@@ -41,6 +43,18 @@ class TreeHeightTest {
         acaChildA.addChild(acaaChildA);
 
         testTree = root;
+    }
+
+    @Test
+    public void findTheLongestPath_thenReturningTwoMostDeepestNodes() throws Exception {
+        // Given
+
+        // When
+        List<Node> theLongestPath = treeHeight.findTheLongestPathBeteewTwoNodes(testTree);
+
+        // Then
+        assertThat(theLongestPath.get(0).value).isEqualTo("A-C-A-A-A");
+        assertThat(theLongestPath.get(1).value).isEqualTo("A-B-A-A");
     }
 
     @Test
