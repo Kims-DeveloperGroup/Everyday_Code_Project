@@ -58,7 +58,7 @@ class BinaryTreeNodeRemovalTest {
     }
 
     @Test
-    public void testVerifyBtree() {
+    public void testVerifyBtree_whenValidBinarySearchTreeIsGiven_thenReturningTrue() {
         // Given
 
         // When
