@@ -90,6 +90,7 @@ public class TreeHeight {
                 }
             }
         }
+        System.out.println(longestPath.get(0).depth + longestPath.get(1).depth + 2);
         return longestPath;
     }
 }
