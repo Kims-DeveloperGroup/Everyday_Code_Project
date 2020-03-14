@@ -1,9 +1,15 @@
 package com.company.sample.tree.btree;
 
 import com.company.sample.tree.Node;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.util.LinkedList;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BinaryTreeNodeRemovalTest {
+    private static BinaryTreeNodeRemoval binaryTreeNodeRemoval = new BinaryTreeNodeRemoval();
     private static Node testTree;
 
 
@@ -14,8 +20,8 @@ class BinaryTreeNodeRemovalTest {
     //           55    82
     //          /  \
     //        49   69
-    @Before
-    public void buildFullBinarySearchTree() {
+    @BeforeAll
+    public static void buildFullBinarySearchTree() {
         //Root level
         Node root = new Node(31);
         root.isRoot = true;
@@ -34,6 +40,59 @@ class BinaryTreeNodeRemovalTest {
         rightChildOfRoot.rightChild = rightOfRightRootChild;
 
         //4th
-        Node leftChildOfRightChildOfRightRootChild = new Node(69);
+        Node leftChildOfLeftChildOfRightRootChild = new Node(49);
+        Node rightChildOfLeftChildOfRightRootChild = new Node(69);
+        leftOfRightRootChild.leftChild = leftChildOfLeftChildOfRightRootChild;
+        leftOfRightRootChild.rightChild = rightChildOfLeftChildOfRightRootChild;
+    }
+
+    @Test
+    public void removeRightChildNode_thenReturnedTreeShouldBeBinarySearchTree() {
+        // Given
+
+        // When
+        Node after = binaryTreeNodeRemoval.removeRightChildNode(testTree);
+
+        // Then
+    }
+
+    @Test
+    public void testVerifyBtree() {
+        // Given
+
+        // When
+        boolean validBtree = verifyBtree(testTree);
+
+        // Then
+        assertThat(validBtree).isTrue();
+    }
+
+    private boolean verifyBtree(Node tree) {
+        LinkedList<Node> ascending = traverseInOrder(tree);
+        Node prev = null;
+
+        for (Node node : ascending) {
+            System.out.println(node.numericValue);
+            if (prev == null) {
+                prev = node;
+            } else {
+                if (node.numericValue < prev.numericValue) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private LinkedList<Node> traverseInOrder(Node parent) {
+        LinkedList<Node> sorted = new LinkedList<>();
+        if (parent.leftChild != null) {
+            sorted.addAll(traverseInOrder(parent.leftChild));
+        }
+        sorted.add(parent);
+        if (parent.rightChild != null) {
+            sorted.addAll(traverseInOrder(parent.rightChild));
+        }
+        return sorted;
     }
 }
