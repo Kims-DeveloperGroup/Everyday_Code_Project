@@ -9,6 +9,7 @@ public class Node {
     public Node(String value) {
         this.value = value;
     }
+    public int depth= 0;
 
     public List<Node> children = new LinkedList<>();
     public String value;
