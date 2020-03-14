@@ -31,12 +31,12 @@ class TreeHeightTest {
         rootChildC.addChild(aca);
 
         //4th
-        Node acaChildA = new Node("A-C-A-A");
-        aca.addChild(acaChildA);
         Node abaChildA = new Node("A-B-A-A");
         aba.addChild(abaChildA);
+        Node acaChildA = new Node("A-C-A-A");
+        aca.addChild(acaChildA);
 
-        //5th
+        //5th the deepest node.
         Node acaaChildA = new Node("A-C-A-A-A");
         acaChildA.addChild(acaaChildA);
 
@@ -44,7 +44,7 @@ class TreeHeightTest {
     }
 
     @Test
-    public void findTwoLongestPath_thenReturningFirstlyAndSeconlyDeepestNodes() {
+    public void findTheDeepestNode_thenReturningFirstlyAndSeconlyDeepestNodes() {
         // Given
 
         // When
