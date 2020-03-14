@@ -50,7 +50,7 @@ class TreeHeightTest {
         // Given
 
         // When
-        List<Node> theLongestPath = treeHeight.findTheLongestPathBeteewTwoNodes(testTree);
+        List<Node> theLongestPath = treeHeight.findTheLongestPathBetweenTwoNodes(testTree);
 
         // Then
         assertThat(theLongestPath.get(0).value).isEqualTo("A-C-A-A-A");

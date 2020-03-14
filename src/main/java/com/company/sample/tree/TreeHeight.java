@@ -64,7 +64,7 @@ public class TreeHeight {
         return currentDeepestNode;
     }
 
-    public List<Node> findTheLongestPathBeteewTwoNodes(Node tree) throws Exception {
+    public List<Node> findTheLongestPathBetweenTwoNodes(Node tree) throws Exception {
         if (tree.children.size() == 0) {
             throw new Exception("The given tree has no child node");
         }
