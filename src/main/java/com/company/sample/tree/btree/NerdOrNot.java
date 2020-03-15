@@ -1,5 +1,6 @@
 package com.company.sample.tree.btree;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class NerdOrNot {
@@ -9,8 +10,9 @@ public class NerdOrNot {
             nerds.add(participant);
             return nerds;
         }
-
-        for (Participant nerd : nerds) {
+        Iterator<Participant> iterator = nerds.iterator();
+        while (iterator.hasNext()) {
+            Participant nerd = iterator.next();
             if (nerd.solvedProblems < participant.solvedProblems) {
                 if (nerd.eatenRamens < participant.eatenRamens) {
                     nerds.removeFirst();
@@ -21,6 +23,9 @@ public class NerdOrNot {
                 }
                 nerds.addFirst(participant);
                 break;
+            }
+            if (!iterator.hasNext()) {
+                nerds.addLast(participant);
             }
         }
         return nerds;
