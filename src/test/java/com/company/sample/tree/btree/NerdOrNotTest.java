@@ -27,10 +27,12 @@ class NerdOrNotTest {
         currentNerds.add(new Participant(72, 50));
 
         // When
-        LinkedList<Participant> nerds = nerdOrNot.addParticipant(currentNerds, new Participant(57, 67));
+        Participant participant = new Participant(57, 67);
+        LinkedList<Participant> nerds = nerdOrNot.addParticipant(currentNerds, participant);
 
         // Then
         assertThat(nerds).hasSize(2);
+        assertThat(nerds.peekFirst()).isEqualTo(participant);
     }
 
     @Test
@@ -48,6 +50,7 @@ class NerdOrNotTest {
 
         // Then
         assertThat(nerds).hasSize(2);
+        assertThat(nerds.peekLast()).isEqualTo(participant);
     }
 
     @Test
