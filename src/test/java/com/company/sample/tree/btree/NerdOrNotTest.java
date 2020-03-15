@@ -19,4 +19,17 @@ class NerdOrNotTest {
         // Then
         assertThat(nerds).hasSize(1);
     }
+
+    @Test
+    public void addParticipant_whenParticipantIsNotDominatedAndDoesNotDominateSomeElse_thenParticipantIsAdded() {
+        // Given
+        LinkedList<Participant> currentNerds = new LinkedList<>();
+        currentNerds.add(new Participant(72, 50));
+
+        // When
+        LinkedList<Participant> nerds = nerdOrNot.addParticipant(currentNerds, new Participant(57, 67));
+
+        // Then
+        assertThat(nerds).hasSize(2);
+    }
 }
