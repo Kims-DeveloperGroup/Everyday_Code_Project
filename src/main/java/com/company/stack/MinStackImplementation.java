@@ -27,7 +27,8 @@ public class MinStackImplementation implements MinStack {
 
     @Override
     public int pop() {
-        return 0;
+        minStack.pop();
+        return valueStack.pop();
     }
 
     @Override
