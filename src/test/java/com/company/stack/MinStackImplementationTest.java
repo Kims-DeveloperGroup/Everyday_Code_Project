@@ -31,12 +31,28 @@ public class MinStackImplementationTest {
         int minValueBeforePush = minStackImplementation.getMin();
 
         // When
-        int LastInValue = 10;
-        minStackImplementation.push(firstInValue);
+        int lastInValueButNeverBeingMin = 10;
+        minStackImplementation.push(lastInValueButNeverBeingMin);
         int min = minStackImplementation.getMin();
 
         // Then
         Assertions.assertThat(min).isEqualTo(minValueBeforePush);
+    }
+
+    @Test
+    public void getMin_whenLastInValueIsTheMinValue_andWhenTheLastInValueIsPushed_thenTheMinValuesShouldBeLastInValue() {
+        // Given
+        MinStack minStackImplementation = new MinStackImplementation();
+        int firstInValue = 10;
+        minStackImplementation.push(firstInValue);
+
+        // When
+        int lastInValueBeingMinValue = 1;
+        minStackImplementation.push(lastInValueBeingMinValue);
+        int min = minStackImplementation.getMin();
+
+        // Then
+        Assertions.assertThat(min).isEqualTo(lastInValueBeingMinValue);
     }
 
 }
