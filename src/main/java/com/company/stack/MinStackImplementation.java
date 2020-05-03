@@ -27,10 +27,11 @@ public class MinStackImplementation implements MinStack {
 
     @Override
     public int pop() {
-        if (minStack.peek().equals(valueStack.peek())) {
+        int topValue = valueStack.pop();
+        if (minStack.peek().equals(topValue)) {
             minStack.pop();
         }
-        return valueStack.pop();
+        return topValue;
     }
 
     @Override
