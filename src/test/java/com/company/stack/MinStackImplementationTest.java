@@ -36,7 +36,7 @@ public class MinStackImplementationTest {
         int min = minStackImplementation.getMin();
 
         // Then
-        Assertions.assertThat(min).isEqualTo(minValueBeforePush);
+        Assertions.assertThat(min).isEqualTo(firstInValue);
     }
 
     @Test
@@ -83,9 +83,9 @@ public class MinStackImplementationTest {
 
         int lastInValueBeingMinValue = 10;
         minStackImplementation.push(lastInValueBeingMinValue);
-        int minValueBeforePopping = minStackImplementation.getMin();
 
         // When
+        int minValueBeforePopping = minStackImplementation.getMin();
         minStackImplementation.pop();
         int minValueAfterPopping = minStackImplementation.getMin();
 
@@ -99,7 +99,6 @@ public class MinStackImplementationTest {
         MinStack minStackImplementation = new MinStackImplementation();
         int firstInValue = 10;
         minStackImplementation.push(firstInValue);
-        int previousMinValue = minStackImplementation.getMin();
 
         int lastInValueBeingMinValue = 1;
         minStackImplementation.push(lastInValueBeingMinValue);
@@ -109,6 +108,6 @@ public class MinStackImplementationTest {
         int minValueAfterPopping = minStackImplementation.getMin();
 
         // Then
-        Assertions.assertThat(minValueAfterPopping).isEqualTo(previousMinValue);
+        Assertions.assertThat(minValueAfterPopping).isEqualTo(firstInValue);
     }
 }
