@@ -25,9 +25,9 @@ public class BalancingElements {
                 continue;
             }
 
-            int repositioned = (i > balancingElementIndex) ? i - 1 : i;
+            int leftShifted = (i > balancingElementIndex) ? i - 1 : i;
 
-            if ((repositioned % 2) == 0) {
+            if ((leftShifted % 2) == 0) {
                 evenSum += elements[i];
             } else {
                 oddSum += elements[i];
