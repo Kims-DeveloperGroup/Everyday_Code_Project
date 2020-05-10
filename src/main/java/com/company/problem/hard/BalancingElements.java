@@ -7,6 +7,13 @@ package com.company.problem.hard;
  * a count of balancing elements in a given array.
  */
 public class BalancingElements {
+
+    /**
+     * Time complexity 2 * O(n) * c => O(n)
+     *
+     * @param unbalancedElements
+     * @return the count of balancing elements
+     */
     public int countBalancingElemetns(int[] unbalancedElements) {
         int[][] partialSum = buildPartialOddAndEvenSum(unbalancedElements); //O(n)
 
