@@ -1,7 +1,5 @@
 package com.company.problem.hard;
 
-import java.util.ArrayList;
-
 /**
  * When one of the elements is removed from an array and the higher indexed elements shift to the left and fill the empty space.
  * In the case, when the sum of even-indexed elements is equal to the sum of the odd-indexed, the removed element is called balancing element.
@@ -10,45 +8,61 @@ import java.util.ArrayList;
  */
 public class BalancingElements {
     public int countBalancingElemetns(int[] unbalancedElements) {
-        int wholeSum = 0;
-        for (int number : unbalancedElements) {
-            wholeSum += number;
-        }
+        int[][] partialSum = buildPartialOddAndEvenSum(unbalancedElements); //O(n)
 
         int count = 0;
-        for (int i = 0; i < unbalancedElements.length; i++) { //O(n^2)
-            if (isBalanced(unbalancedElements, i, wholeSum)) {
+        for (int i = 0; i < unbalancedElements.length; i++) { //O(n)
+            if (isBalanced(i, partialSum.clone())) { // c
                 count++;
             }
         }
         return count;
     }
 
-    private boolean isBalanced(int[] elements, int balancingElementIndex, int wholeSum) {
-        int oddSum = 0;
-        int evenSum = 0;
+    private int[][] buildPartialOddAndEvenSum(int[] unbalancedElements) {
+        int wholeOddSum = 0;
+        int wholeEvenSum = 0;
+        int[][] partialSum = new int[unbalancedElements.length][2];
+        for (int i = 0; i < unbalancedElements.length; i++) {//O(n)
+            int number = unbalancedElements[i];
+            if ((i % 2) == 0) {
+                wholeEvenSum += number;
+                if (i == 0) {
+                    partialSum[0][0] = wholeEvenSum;
+                    partialSum[0][1] = 0;
 
-        if (((wholeSum - elements[balancingElementIndex]) % 2) != 0) {
-            return false;
-        }
-
-        for (int i = 0; i < elements.length; i++) {
-            if (balancingElementIndex == i) {
-                continue;
-            }
-
-            int leftShifted = (i > balancingElementIndex) ? i - 1 : i;
-
-            if ((leftShifted % 2) == 0) {
-                evenSum += elements[i];
+                } else {
+                    partialSum[i][0] = wholeEvenSum;
+                    partialSum[i][1] = partialSum[i - 1][1];
+                }
             } else {
-                oddSum += elements[i];
-            }
-
-            if (oddSum > (wholeSum / 2) || (evenSum > (wholeSum / 2))) {
-                break;
+                wholeOddSum += number;
+                partialSum[i][0] = partialSum[i - 1][0];
+                partialSum[i][1] = wholeOddSum;
             }
         }
+        return partialSum;
+    }
+
+    private boolean isBalanced(int indexToRemove, int[][] partialSum) {
+        int lastIndex = partialSum.length - 1;
+
+        int[] partialSumBeforeElement;
+        if (indexToRemove == 0) {
+            partialSumBeforeElement = new int[]{0, 0};
+        } else {
+            partialSumBeforeElement = partialSum[indexToRemove - 1];
+        }
+
+        int[] partialSumAfterRemovedElement = {partialSum[lastIndex][0] - partialSum[indexToRemove][0], partialSum[lastIndex][1] - partialSum[indexToRemove][1]};
+
+        int even = partialSumAfterRemovedElement[0];
+        partialSumAfterRemovedElement[0] = partialSumAfterRemovedElement[1];
+        partialSumAfterRemovedElement[1] = even;
+
+        int evenSum = partialSumAfterRemovedElement[0] + partialSumBeforeElement[0];
+        int oddSum = partialSumAfterRemovedElement[1] + partialSumBeforeElement[1];
+        System.out.println("indexToRemove:" + indexToRemove + " oddSum: " + oddSum + " evenSum: " + evenSum);
         return evenSum == oddSum;
     }
 }
