@@ -1,5 +1,7 @@
 package com.company.problem.hard;
 
+import java.util.ArrayList;
+
 /**
  * When one of the elements is removed from an array and the higher indexed elements shift to the left and fill the empty space.
  * In the case, when the sum of even-indexed elements is equal to the sum of the odd-indexed, the removed element is called balancing element.
@@ -14,7 +16,12 @@ public class BalancingElements {
         }
 
         int count = 0;
-        for (int i = 0; i < unbalancedElements.length; i++) {
+        for (int i = 0; i < unbalancedElements.length; i++) { //O(n^2)
+
+            if (((wholeSum - unbalancedElements[i]) % 2) != 0) {
+                continue;
+            }
+
             if (isBalanced(unbalancedElements, i, wholeSum)) {
                 count++;
             }
