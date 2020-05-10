@@ -17,11 +17,6 @@ public class BalancingElements {
 
         int count = 0;
         for (int i = 0; i < unbalancedElements.length; i++) { //O(n^2)
-
-            if (((wholeSum - unbalancedElements[i]) % 2) != 0) {
-                continue;
-            }
-
             if (isBalanced(unbalancedElements, i, wholeSum)) {
                 count++;
             }
@@ -32,6 +27,10 @@ public class BalancingElements {
     private boolean isBalanced(int[] elements, int balancingElementIndex, int wholeSum) {
         int oddSum = 0;
         int evenSum = 0;
+
+        if (((wholeSum - elements[balancingElementIndex]) % 2) != 0) {
+            return false;
+        }
 
         for (int i = 0; i < elements.length; i++) {
             if (balancingElementIndex == i) {
