@@ -1,5 +1,11 @@
 package com.company.problem.hard;
 
+/**
+ * When one of the elements is removed from an array and the higher indexed elements shift to the left and fill the empty space.
+ * In the case, when the sum of even-indexed elements is equal to the sum of the odd-indexed, the removed element is called balancing element.
+ * Expected answer:
+ * a count of balancing elements in a given array.
+ */
 public class BalancingElements {
     public int countBalancingElemetns(int[] unbalancedElements) {
         int wholeSum = 0;
