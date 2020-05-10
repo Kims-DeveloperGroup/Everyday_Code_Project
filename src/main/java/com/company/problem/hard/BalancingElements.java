@@ -72,4 +72,47 @@ public class BalancingElements {
         System.out.println("indexToRemove:" + indexToRemove + " oddSum: " + oddSum + " evenSum: " + evenSum);
         return evenSum == oddSum;
     }
+
+    /**
+     * The WAY OF REBUILDING partialSum after removal
+     * arr: [0 1 2 3 4 5]
+     * partialEvenAndOddSum
+     * = [[0], [0]], [[0], [1]],  [[0 + 2], [1]]  [[0 + 2], [1 + 3]] [[0 + 2 + 4], [1 + 3]], [[0 + 2 + 4], [1 + 3 + 5]]
+     *
+     * CASE 1: Remove 0 from arr
+     *
+     * 0 removed and shift higher indexed elements to the left
+     * arrAfterRemove: [1 2 3 4 5]
+     *
+     * Rebuilt partialSum after removal
+     * [[1],[0]], [[1], [2]], [[1,3], [2]], [[1,3], [2. 4]], [[1, 3, 5], [2, 4]]
+     *
+     *
+     * Rebuild the last element partialSum
+     * [[0 + 2 + 4], [1 + 3 + 5] => [[1, 3, 5], [2, 4]]
+     *
+     * 1. Subtract by partialSum till the removed element
+     * partialSum[last] - partialSum[0]
+     *  = [[0 + 2 + 4], [1 + 3 + 5]] - [[0], [0]] = [[2 + 4], [1 + 3 + 5]]
+     *
+     * 2. Swap the position
+     * partialSum[last][0] = partialSum[last][1]  partialSum[last][1] = partialSum[last][0]
+     * [[2 + 4], [1 + 3 + 5]] => [[1 + 3 + 5], [2 + 4]] //
+     *
+     *
+     *
+     * CASE 2: Remove 3 located in the middle of arr
+     * 3 removed and shift higher indexed elements to the left
+     * [[0], []], [[0], [1]],  [[0, 2], [1]]  [[0, 2, 4], [1, 3]], [[0, 2, 4], [1, 3, 5]]
+     *
+     * 1. Subtract by partialSum till the removed element
+     * partialSum[last] - partialSum[0]
+     *  = [[0, 2, 4], [1, 3, 5]] - [[0, 2], [1, 3]] = [[4], [5]]
+     * 2. Swap the position
+     *  [[4], [5]] => [[5], [4]]
+     *
+     * 3. Sum partialSum before the removed element
+     * [[5], [4]] + [[0 + 2], [1]] = [0 + 2 + 5], [1 + 4]
+     */
+
 }
