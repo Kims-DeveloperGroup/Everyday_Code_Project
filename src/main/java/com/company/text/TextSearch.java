@@ -9,7 +9,7 @@ public class TextSearch {
 
     public int searchText(String textToSearch) {
         int count = 0;
-        for (int startIndex = 0; startIndex < text.length() - textToSearch.length() + 1; startIndex++) {
+        for (int startIndex = 0; startIndex < text.length() - textToSearch.length() + 1; ) {
             int matchedCharCount = 0;
             for (int currIndex = 0; currIndex < textToSearch.length(); ) {
                 char ch1 = text.charAt(currIndex + startIndex);
@@ -23,6 +23,7 @@ public class TextSearch {
             if (matchedCharCount == textToSearch.length()) {
                 count++;
             }
+            startIndex++;
         }
         return count;
     }
