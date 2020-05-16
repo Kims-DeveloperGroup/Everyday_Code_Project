@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TextSearchTest {
+public class TextSearchTest {
     @Test
     public void searchText_whenSearchingAVAInAVAVA_thenReturning2() {
         // Given
