@@ -11,13 +11,14 @@ public class TextSearch {
         int count = 0;
         for (int startIndex = 0; startIndex < text.length() - textToSearch.length() + 1; startIndex++) {
             int matchedCharCount = 0;
-            for (int currIndex = 0; currIndex < textToSearch.length(); currIndex++) {
+            for (int currIndex = 0; currIndex < textToSearch.length(); ) {
                 char ch1 = text.charAt(currIndex + startIndex);
                 char ch2 = textToSearch.charAt(currIndex);
                 if (ch1 != ch2) {
                     break;
                 }
                 matchedCharCount++;
+                currIndex++;
             }
             if (matchedCharCount == textToSearch.length()) {
                 count++;
