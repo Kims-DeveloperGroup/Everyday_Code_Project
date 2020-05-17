@@ -24,13 +24,14 @@ public class SearchableStringTest {
     public void buildIncrementMap_whenAAIsGiven_thenIncrementHasNoElement() {
         // Given
         String textToSearch = "aa";
-        SearchableString avava = new SearchableString("avava");
+        SearchableString avava = new SearchableString("");
 
         // When
         Map<Integer, Integer> aaIncrementMap = avava.buildIncrementMap(textToSearch);
 
         // Then
-        assertThat(aaIncrementMap).hasSize(0);
+        assertThat(aaIncrementMap).hasSize(1);
+        assertThat(aaIncrementMap.get(2)).isEqualTo(1);
     }
 
     @Test
