@@ -39,6 +39,14 @@ public class SearchableString {
         return count;
     }
 
+    /**
+     * Referencing KMP algorithm
+     * Build a start-index-increment map when searching text
+     * Key: length of first matching chars, Value: How many a start index increments.
+     *
+     * @param text to build
+     * @return a start-index-increment map
+     */
     Map<Integer, Integer> buildIncrementMap(String text) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int partialLength = 2; partialLength < text.length(); partialLength++) {
@@ -53,18 +61,22 @@ public class SearchableString {
         return map;
     }
 
-    private int getMaxLengthMatchingPrefixAndPostfix(String subStr) {
-        System.out.println("subString: " + subStr);
-        int maxLength = 0;
-        for (int prefixLength = 1; prefixLength < subStr.length(); prefixLength++) {
-            String pre = subStr.substring(0, prefixLength);
-            String post = subStr.substring(subStr.length() - prefixLength);
+    /**
+     * @param string to check the max length of matching postfix and prefix
+     * @return max length of matching postfix and prefix
+     */
+    private int getMaxLengthMatchingPrefixAndPostfix(String string) {
+        System.out.println("subString: " + string);
+        int maxLengthMatchingPrefixAndPostfix = 0;
+        for (int prefixLength = 1; prefixLength < string.length(); prefixLength++) {
+            String pre = string.substring(0, prefixLength);
+            String post = string.substring(string.length() - prefixLength);
             System.out.println("pre: " + pre + " post: " + post + " prefixLen: " + prefixLength);
             if (pre.equals(post)) {
                 System.out.println("matched");
-                maxLength = prefixLength;
+                maxLengthMatchingPrefixAndPostfix = prefixLength;
             }
         }
-        return maxLength;
+        return maxLengthMatchingPrefixAndPostfix;
     }
 }
