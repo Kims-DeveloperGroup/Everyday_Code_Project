@@ -51,10 +51,23 @@ public class SearchableStringTest {
     }
 
     @Test
-    public void searchText_whenSearchableTextContainsTheGivenStringIn2SubString_thenReturning2() {
+    public void searchText_whenSearchableTextContainsTheGivenStringIn2SubString_thenReturning2_case1() {
         // Given
         String textToSearch = "abcabd";
         SearchableString searchableString = new SearchableString("XXXX" + textToSearch + "XXXX" + textToSearch);
+
+        // When
+        int matchedCount = searchableString.searchText(textToSearch);
+
+        // Then
+        assertThat(matchedCount).isEqualTo(2);
+    }
+
+    @Test
+    public void searchText_whenSearchableTextContainsTheGivenStringIn2SubString_thenReturning2_case2() {
+        // Given
+        String textToSearch = "abcabd";
+        SearchableString searchableString = new SearchableString("XXXXabc" + textToSearch + "XXXX" + textToSearch);
 
         // When
         int matchedCount = searchableString.searchText(textToSearch);
