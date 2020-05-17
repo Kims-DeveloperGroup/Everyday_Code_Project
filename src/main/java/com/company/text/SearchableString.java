@@ -29,8 +29,8 @@ public class SearchableString {
             }
             if (matchedCharCount == textToSearch.length()) {
                 count++;
-                System.out.println("matched in " + startIndex);
-                startIndex++;
+                System.out.println("all matched in " + startIndex);
+                startIndex = startIndex + this.integerIntegerMap.get(matchedCharCount);
             } else if (matchedCharCount == 0 || matchedCharCount == 1) {
                 startIndex++;
             } else {
@@ -49,8 +49,9 @@ public class SearchableString {
      * @return a start-index-increment map
      */
     Map<Integer, Integer> buildIncrementMap(String text) {
+        System.out.println("IncrementMap build started for " + text);
         HashMap<Integer, Integer> incrementMap = new HashMap<>();
-        for (int startIndex = 1; startIndex < text.length(); startIndex++) {
+        for (int startIndex = 1; startIndex < text.length(); ) {
             int matchedLength = startIndex + 1;
             for (int i = 0; i < text.length() - startIndex; i++) {
                 char ch1 = text.charAt(i);
@@ -58,37 +59,22 @@ public class SearchableString {
 
                 if (ch1 == leftCutText) {
                     incrementMap.put(matchedLength, startIndex);
-                    System.out.println("matched: " + matchedLength + " char:" + ch1 + " increment: " + startIndex);
+                    System.out.println("matchedLength: " + matchedLength + " increment: " + startIndex);
                     matchedLength++;
                 } else {
+                    incrementMap.put(matchedLength, 1);
+                    System.out.println("matchedLength: " + matchedLength + " increment: " + 1);
                     break;
                 }
             }
 
             if (matchedLength == startIndex + 1) {
-                incrementMap.put(matchedLength, 1);
-                System.out.println("matched: " + matchedLength + " increment: 1");
+                startIndex++;
             } else {
-                startIndex = matchedLength;
+                startIndex = matchedLength + 1;
             }
         }
+        System.out.println("IncrementMap has been built.");
         return incrementMap;
-    }
-
-    /**
-     * @param string to check the max length of matching postfix and prefix
-     * @return max length of matching postfix and prefix
-     */
-    private int getMaxLengthMatchingPrefixAndPostfix(String string) {
-        int maxLengthMatchingPrefixAndPostfix = 0;
-        for (int prefixLength = 1; prefixLength < string.length(); prefixLength++) {
-            String pre = string.substring(0, prefixLength);
-            String post = string.substring(string.length() - prefixLength);
-            if (pre.equals(post)) {
-                System.out.println("prefix: " + pre + " post: " + post + " matched in " + string);
-                maxLengthMatchingPrefixAndPostfix = prefixLength;
-            }
-        }
-        return maxLengthMatchingPrefixAndPostfix;
     }
 }
