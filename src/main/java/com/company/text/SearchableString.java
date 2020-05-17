@@ -3,11 +3,11 @@ package com.company.text;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TextSearch {
+public class SearchableString {
     public final String text;
     public Map<Integer, Integer> integerIntegerMap;
 
-    public TextSearch(String text) {
+    public SearchableString(String text) {
         this.text = text;
     }
 
@@ -39,7 +39,7 @@ public class TextSearch {
         return count;
     }
 
-    public Map<Integer, Integer> buildIncrementMap(String text) {
+    Map<Integer, Integer> buildIncrementMap(String text) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int partialLength = 2; partialLength < text.length(); partialLength++) {
             String partialString = text.substring(0, partialLength);
