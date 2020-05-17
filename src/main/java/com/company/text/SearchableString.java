@@ -51,7 +51,7 @@ public class SearchableString {
     Map<Integer, Integer> buildIncrementMap(String text) {
         System.out.println("\nIncrementMap has started for " + text);
         HashMap<Integer, Integer> map = new HashMap<>();
-        for (int partialLength = 2; partialLength < text.length(); partialLength++) {
+        for (int partialLength = 2; partialLength <= text.length(); partialLength++) {
             String partialString = text.substring(0, partialLength);
             int maxLengthToMatch = getMaxLengthMatchingPrefixAndPostfix(partialString);
             if (maxLengthToMatch == 0) {

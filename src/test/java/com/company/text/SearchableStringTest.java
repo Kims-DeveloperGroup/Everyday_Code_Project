@@ -36,7 +36,7 @@ public class SearchableStringTest {
     @Test
     public void buildIncrementMap_when_ABcAB_IsGiven() {
         // Given
-        String textToSearch = "abcabd";
+        String textToSearch = "abcab";
         SearchableString searchableString = new SearchableString("");
 
         // When
