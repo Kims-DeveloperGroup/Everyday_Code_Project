@@ -51,7 +51,7 @@ public class SearchableStringTest {
     }
 
     @Test
-    public void searchText_when_ABcAB_IsGiven() {
+    public void searchText_whenSearchableTextContainsTheGivenStringIn2SubString_thenReturning2() {
         // Given
         String textToSearch = "abcabd";
         SearchableString searchableString = new SearchableString("XXXX" + textToSearch + "XXXX" + textToSearch);
