@@ -53,14 +53,13 @@ public class SearchableString {
         HashMap<Integer, Integer> incrementMap = new HashMap<>();
         for (int startIndex = 1; startIndex < text.length(); ) {
             int currentIndex = startIndex;
-            for (int i = 0; i < text.length() - startIndex; i++) {
-                char ch1 = text.charAt(i);
-                char leftCutText = text.charAt(i + startIndex);
+            for (; currentIndex < text.length(); currentIndex++) {
+                char ch1 = text.charAt(currentIndex - startIndex);
+                char leftCutText = text.charAt(currentIndex);
                 int partialMatchingLength = currentIndex + 1;
                 if (ch1 == leftCutText) {
                     incrementMap.put(partialMatchingLength, startIndex);
                     System.out.println("matchedLength: " + partialMatchingLength + " increment: " + startIndex);
-                    currentIndex++;
                 } else {
                     incrementMap.put(currentIndex + 1, 1);
                     System.out.println("matchedLength: " + partialMatchingLength + " increment: " + 1);
