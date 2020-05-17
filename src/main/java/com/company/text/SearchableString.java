@@ -49,21 +49,30 @@ public class SearchableString {
      * @return a start-index-increment map
      */
     Map<Integer, Integer> buildIncrementMap(String text) {
-        System.out.println("\nIncrementMap has started for " + text);
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int partialLength = 2; partialLength <= text.length(); partialLength++) {
-            String partialString = text.substring(0, partialLength);
-            int maxLengthToMatch = getMaxLengthMatchingPrefixAndPostfix(partialString);
-            if (maxLengthToMatch == 0) {
-                map.put(partialLength, 1);
+        HashMap<Integer, Integer> incrementMap = new HashMap<>();
+        for (int startIndex = 1; startIndex < text.length(); startIndex++) {
+            int matchedLength = startIndex + 1;
+            for (int i = 0; i < text.length() - startIndex; i++) {
+                char ch1 = text.charAt(i);
+                char leftCutText = text.charAt(i + startIndex);
+
+                if (ch1 == leftCutText) {
+                    incrementMap.put(matchedLength, startIndex);
+                    System.out.println("matched: " + matchedLength + " char:" + ch1 + " increment: " + startIndex);
+                    matchedLength++;
+                } else {
+                    break;
+                }
+            }
+
+            if (matchedLength == startIndex + 1) {
+                incrementMap.put(matchedLength, 1);
+                System.out.println("matched: " + matchedLength + " increment: 1");
             } else {
-                int increment = partialLength - maxLengthToMatch;
-                map.put(partialLength, increment);
-                System.out.println("Key: " + partialString.length() + " IncrementValue: " + increment);
+                startIndex = matchedLength;
             }
         }
-        System.out.println("IncrementMap has been built.");
-        return map;
+        return incrementMap;
     }
 
     /**
