@@ -52,22 +52,22 @@ public class SearchableString {
         System.out.println("IncrementMap build started for " + text);
         HashMap<Integer, Integer> incrementMap = new HashMap<>();
         for (int startIndex = 1; startIndex < text.length(); ) {
-            int matchedLength = startIndex + 1;
+            int currentIndex = startIndex;
             for (int i = 0; i < text.length() - startIndex; i++) {
                 char ch1 = text.charAt(i);
                 char leftCutText = text.charAt(i + startIndex);
-
+                int partialMatchingLength = currentIndex + 1;
                 if (ch1 == leftCutText) {
-                    incrementMap.put(matchedLength, startIndex);
-                    System.out.println("matchedLength: " + matchedLength + " increment: " + startIndex);
-                    matchedLength++;
+                    incrementMap.put(partialMatchingLength, startIndex);
+                    System.out.println("matchedLength: " + partialMatchingLength + " increment: " + startIndex);
+                    currentIndex++;
                 } else {
-                    incrementMap.put(matchedLength, 1);
-                    System.out.println("matchedLength: " + matchedLength + " increment: " + 1);
+                    incrementMap.put(currentIndex + 1, 1);
+                    System.out.println("matchedLength: " + partialMatchingLength + " increment: " + 1);
                     break;
                 }
             }
-            startIndex = matchedLength;
+            startIndex = currentIndex + 1;
         }
         System.out.println("IncrementMap has been built.");
         return incrementMap;
