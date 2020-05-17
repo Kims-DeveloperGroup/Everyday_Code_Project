@@ -67,12 +67,7 @@ public class SearchableString {
                     break;
                 }
             }
-
-            if (matchedLength == startIndex + 1) {
-                startIndex++;
-            } else {
-                startIndex = matchedLength + 1;
-            }
+            startIndex = matchedLength;
         }
         System.out.println("IncrementMap has been built.");
         return incrementMap;
