@@ -1,5 +1,10 @@
 package com.company.problem.hard;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * PROBLEM:
  *
@@ -22,8 +27,81 @@ package com.company.problem.hard;
  */
 public class SliceSort {
 
-    public int sort(int[] array) {
-        int count = array.length;
+    public int sort(Integer[] array) {
+        int count = 0;
+        // Exit condition 1 : array length is 1
+        if (array.length == 1) {
+            return 1;
+        }
+        // 1) Slice until asc order stops (Note: a last element included)
+        List<Integer[]> slices = slice(array);
+
+        // Exit condition 2: Only a single slice exits
+        if (slices.size() == 1) {
+            Arrays.sort(array);
+            return 1;
+        }
+        // 2) Recursive call sort() for each sliced array
+        for (Integer[] s: slices) {
+            count += sort(s);
+        }
+        // 3) Merge sliced arrays sequentially and verify elements are asc ordered.
+        List<Integer> merged = new LinkedList<>();
+
+        Integer prev = null;
+        boolean sorted = true;
+        for (Integer[] slice: slices) {
+
+            for (Integer el: slice) {
+                merged.add(el);
+                if (prev == null) {
+                    prev = el;
+                    continue;
+                }
+                if (el < prev) {
+                    sorted = false;
+                }
+            }
+        }
+        // 4-1) if so, Assign the sorted array to the given array
+        // 4-2) otherwise, Re-sort the merged array and slice count is 1
+        if (sorted) {
+            merged.toArray(array);
+        } else {
+            count = 1;
+            Arrays.sort(array);
+        }
+        // 5) Return the count of slices
         return count;
+    }
+
+    private List<Integer[]> slice(Integer[] array) {
+        List<Integer[]> slices = new ArrayList<>();
+
+        Integer prev = null;
+        List<Integer> slice = new LinkedList<>();
+        for (int i = 0; i < array.length; i++) {
+            if (prev == null) {
+                prev = array[i];
+                slice.add(array[i]);
+                continue;
+            }
+
+            if (array[i] < prev) {
+                slice.add(array[i]);
+
+                Integer[] e = slice.toArray(new Integer[]{});
+                slices.add(e);
+                prev = null;
+                slice = new LinkedList<>();
+            } else {
+                prev = array[i];
+                slice.add(array[i]);
+                if (i == array.length -1) {
+                    slices.add(slice.toArray(new Integer[]{}));
+                }
+            }
+        }
+        return slices;
     }
 }

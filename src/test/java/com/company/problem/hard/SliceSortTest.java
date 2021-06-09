@@ -11,7 +11,7 @@ public class SliceSortTest {
     @Test
     public void sample1() {
         // Given
-        int[] given = {2, 4, 1, 6, 5, 9, 7};
+        Integer[] given = {2, 4, 1, 6, 5, 9, 7};
 
         // When
         int slicedCount = sliceSort.sort(given);
@@ -23,7 +23,7 @@ public class SliceSortTest {
     @Test
     public void sample2() {
         // Given
-        int[] given = {4, 3, 2, 6, 1};
+        Integer[] given = {4, 3, 2, 6, 1};
 
         // When
         int slicedCount = sliceSort.sort(given);
@@ -35,7 +35,7 @@ public class SliceSortTest {
     @Test
     public void sample3() {
         // Given
-        int[] given = {2, 1, 6, 4, 3, 7};
+        Integer[] given = {2, 1, 6, 4, 3, 7};
 
         // When
         int slicedCount = sliceSort.sort(given);
