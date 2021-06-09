@@ -29,14 +29,11 @@ public class SliceSort {
 
     public int sort(Integer[] array) {
         int count = 0;
-        // Exit condition 1 : array length is 1
-        if (array.length == 1) {
-            return 1;
-        }
+
         // 1) Slice until asc order stops (Note: a last element included)
         List<Integer[]> slices = slice(array);
 
-        // Exit condition 2: Only a single slice exits
+        // Exit condition: Only a single slice exits
         if (slices.size() == 1) {
             Arrays.sort(array);
             return 1;
